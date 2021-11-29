@@ -19,4 +19,4 @@ Endpoints for getting data from tasks depending on status will be addressed. As 
 The API documentation was created on Swagger and pushed to the docs in this project.
 The example code for the API documentation is in this repo.
 
-The form builder feature and API documentation lives on the Wiki page of this project.
+The documentation of the form builder feature and API live on the Wiki page of this project.
