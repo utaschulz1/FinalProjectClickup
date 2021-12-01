@@ -16,8 +16,10 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * concepts topic headings have the format: About concept
 * tasks topic headings have the format: How to create a task
 * steps have the format: STEP # Opening the first window
-* results have the format: >>I am a result
+* results have the format of a code block
 * reference topics have the format:
+
+>Blockquote
 
 ## API documentation
 Endpoints for getting data from tasks depending on status will be addressed. As an example, the form data from the earlier built form will be queried and used to build a testimonial on the website.
