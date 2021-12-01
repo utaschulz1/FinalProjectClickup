@@ -20,7 +20,7 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * results have the format of a blockquote 
 >I am a result
 * UI elements have the format of a codeblock: `UI element`
-* reference topics have the format:
+* reference topics preferably have the format: list or table
 
 ## API documentation
 Endpoints for getting data from tasks depending on status will be addressed. As an example, the form data from the earlier built form will be queried and used to build a testimonial on the website.
