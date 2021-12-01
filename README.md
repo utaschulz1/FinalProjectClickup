@@ -15,6 +15,7 @@ The form builder feature in Clickup creates a form, called a form view, that can
 ### Topic formats
 * concepts topic headings have the format: About concept
 * tasks topic headings have the format: How to create a task
+* before the first step, list prerequisites. If there are non, say that there are non or state your starting point
 * steps have the format: STEP # Opening the first window
 * results have the format of a blockquote 
 >I am a result
