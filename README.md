@@ -20,6 +20,8 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * results have the format of a blockquote 
 >I am a result
 * UI elements have the format of a codeblock: `UI element`
+* names can be formatted as _italic_
+* checkboxes are _enabled_, not checked, not activated
 * reference topics preferably have the format: list or table
 
 ## API documentation
