@@ -17,7 +17,7 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * tasks topic headings have the format: How to create a task
 * steps have the format: STEP # Opening the first window
 * results have the format of a blockquote 
->I am result
+>I am a result
 * UI elements have the format: `UI element`
 * reference topics have the format:
 
