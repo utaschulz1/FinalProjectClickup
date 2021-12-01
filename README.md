@@ -19,7 +19,7 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * steps have the format: STEP # Opening the first window
 * results have the format of a blockquote 
 >I am a result
-* UI elements have the format: `UI element`
+* UI elements have the format of a codeblock: `UI element`
 * reference topics have the format:
 
 ## API documentation
