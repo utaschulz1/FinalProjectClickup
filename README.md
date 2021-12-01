@@ -2,10 +2,10 @@
 This is the final project of the course about software documentation with [Jordan Stanchev](https://github.com/JordanStanchev/Getting-Started-as-User-Assistance-Developer). 
 
 ## Topic
-I chose to document Clickup, in particular the form building function.
+I chose to document Clickup, a productivity app, in particular the form building function.
 
 ## Target audience form builder feature
-My target audience are users like me: such a user would use for business and/or private to organize time and resources adn plan goals and projects on a more or less granular level. The user is computer literate and wants to understand workflows and automations.
+My target audience are users like me: such users would use Clickup for business and/or private life to organize time and resources and plan goals and projects on a more or less granular level. On their journey learning about Clickups possibilities users would integrate more and more processes into there Clickup workspace, like accounting or vendor management. The user is computer literate and does an effort to understand workflows and automations.
 
 ## Target audience API endpoints for building testimonials on website
 web developer
