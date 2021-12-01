@@ -5,7 +5,7 @@ This is the final project of the course about software documentation with [Jorda
 I chose to document Clickup, a productivity app, in particular the form building function.
 
 ## Target audience form builder feature
-My target audience are users like me: such users would use Clickup for business and/or private life to organize time and resources and plan goals and projects on a more or less granular level. On their journey learning about Clickups possibilities users would integrate more and more processes into there Clickup workspace, like accounting or vendor management. The user is computer literate and does an effort to understand workflows and automations. The user has no coding skill and does not speak developers lingo.
+My target audience are users like me: Those users would use Clickup for business and/or private life to organize time and resources and plan goals and projects on a more or less granular level. On their journey learning about Clickups possibilities users would integrate more and more processes into there Clickup workspace, like accounting or vendor management. My users are computer literates and take an effort to understand workflows and automations. Those users have no coding skills and do not speak developers' lingo.
 
 ## Target audience API endpoints for building testimonials on website
 web developer
