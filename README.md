@@ -12,6 +12,10 @@ web developer
 
 Feature documentation
 The form builder feature in Clickup creates a form, called a form view, that can be shared and embedded. If the form is submitted a task is created tht contains the specified fields and data.
+>concepts topic headings have the format About concept
+>tasks topic headings have the format How to create a task
+>steps have the format STEP # Opening the first window
+>reference topics have the format
 
 API documentation
 Endpoints for getting data from tasks depending on status will be addressed. As an example, the form data from the earlier built form will be queried and used to build a testimonial on the website.
