@@ -1,0 +1,443 @@
+---
+openapi: 3.0.0
+info:
+  title: Clickup API
+  description: "This Clickup API documentation created in Swagger is the final project for the Software Documentation course with Jordan Stanchev for the TCLoc master's program.\nClickup is a projectmanagement tool.\nThis API documentation introduces a get method to query all fields with their values from on specific task, a get method to query all custom fields that were created in a specific list without their values, and  a post method to change/set field values in a task by using field IDs.       "
+  contact:
+    name: Uta Schulz
+    email: info@umtranslation.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/UMTranslation/FinalProjectClickupAPI/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://api.clickup.com/api/v2
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /task/{task_id}:
+    get:
+      tags:
+      - developers
+      summary: calls complete task with all fields
+      description: "This method gets all fields and their values of one specific task, including existing custom fields and attachements. \n"
+      operationId: getTask
+      parameters:
+      - name: task_id
+        in: path
+        description: pass a task id to call one task
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: custom_task_ids
+        in: query
+        description: If you want to reference a task by its custom task id, this value must be true
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: team_id
+        in: query
+        description: Only used when the parameter is set to custom_task_ids=true
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+      - name: include_subtasks
+        in: query
+        description: Include subtasks, default false
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: queried task
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/getTask'
+        "400":
+          description: bad input parameter
+      security:
+      - ApiKeyAuth: []
+  /list/{list_id}/field:
+    get:
+      tags:
+      - developers
+      summary: gets accessible custom fields in one list
+      description: |
+        This method get all custom fields that were created in one specific list. This can be useful for retrieving IDs to set field values.
+      operationId: getCustomfields
+      parameters:
+      - name: list_id
+        in: path
+        description: pass a list id to call one task
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: queried task
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetCustomfield'
+        "400":
+          description: bad input parameter
+      security:
+      - ApiKeyAuth: []
+  /task/{task_id}/field/{field_id}:
+    post:
+      tags:
+      - admins
+      summary: sets a custom field value
+      description: This methods changes or sets a value of a specific field of a task.
+      operationId: customFieldvalue
+      parameters:
+      - name: task_id
+        in: path
+        description: Enter a task ID to identify the task where the custom field lives in
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: field_id
+        in: path
+        description: Enter a field ID. You can retrieve the field ID on the task object from the get task route.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: custom_task_ids
+        in: query
+        description: If you want to reference a task by it's custom task id, this value must be true
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      - name: team_id
+        in: query
+        description: Only used when the parameter is set to custom_task_ids=true
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+      requestBody:
+        description: The value to be set in the custom field
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SetCustomfieldValue'
+      responses:
+        "201":
+          description: task created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing task already exists
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    getTask:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+      description: |-
+        body
+            {
+                "id": "9hx",
+                "custom_id":null,
+                "name": "Updated Task Name",
+                "text_content": "New Task Description",
+                "description": "New Task Description",
+                "status": {
+                    "status": "in progress",
+                    "color": "#d3d3d3",
+                    "orderindex": 1,
+                    "type": "custom"
+                },
+                "orderindex": "1.00000000000000000000000000000000",
+                "date_created": "1567780450202",
+                "date_updated": "1567780450202",
+                "date_closed": null,
+                "creator": {
+                    "id": 183,
+                    "username": "John Doe",
+                    "color": "#827718",
+                    "profilePicture": "https://attachments-public.clickup.com/profilePictures/183_abc.jpg"
+                },
+                "assignees": [],
+                "checklists": [],
+                "tags": [],
+                "parent": null,
+                "priority": null,
+                "due_date": null,
+                "start_date": null,
+                "time_estimate": null,
+                "time_spent": null,
+                "custom_fields": [
+                    {
+                    "id": "0a52c486-5f05-403b-b4fd-c512ff05131c",
+                    "name": "My Number field",
+                    "type": "checkbox",
+                    "type_config": {},
+                    "date_created": "1622176979540",
+                    "hide_from_guests": false,
+                    "value": "23",
+                    "required": true
+                    },
+                    {
+                    "id": "03efda77-c7a0-42d3-8afd-fd546353c2f5",
+                    "name": "My Text field",
+                    "type": "short_text",
+                    "type_config": {},
+                    "date_created": "1622176979540",
+                    "hide_from_guests": false,
+                    "value": "Text field input",
+                    "required": false
+                    },
+                    {
+                    "id": "f4d2a20d-6759-4420-b853-222dbe2589d5",
+                    "name": "My People",
+                    "type": "users",
+                    "type_config": {
+                        "include_guests": false,
+                        "include_team_members": false
+                    },
+                    "date_created": "1618440378816",
+                    "hide_from_guests": false,
+                    "required": false
+                    }
+                ]
+                "list": {
+                    "id": "123"
+                },
+                "folder": {
+                    "id": "456"
+                },
+                "space": {
+                    "id": "789"
+                },
+                "url": "https://app.clickup.com/t/9hx"
+            }
+    GetCustomfield:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+      description: |-
+        {
+          "fields": [
+            {
+              "id": "03efda77-c7a0-42d3-8afd-fd546353c2f5",
+              "name": "Text Field",
+              "type": "text",
+              "type_config": {},
+              "date_created": "1566400407303",
+              "hide_from_guests": false
+            },
+            {
+              "id": "0a52c486-5f05-403b-b4fd-c512ff05131c",
+              "name": "Number Field",
+              "type": "number",
+              "type_config": {},
+              "date_created": "1565993269460",
+              "hide_from_guests": false
+            },
+            {
+              "id": "0c7e8f5c-557b-4128-bf37-29e2fe5bb7f9",
+              "name": "Label Field",
+              "type": "labels",
+              "type_config": {
+                "options": [
+                  {
+                    "id": "fb332c98-d7bc-4ee8-a3bd-b5ffaff98c3c",
+                    "label": "one",
+                    "color": null
+                  },
+                  {
+                    "id": "2b0c058c-2f41-4f61-8fc8-f9ea426e8c0e",
+                    "label": "two",
+                    "color": null
+                  },
+                  {
+                    "id": "75e10f4b-b4cc-4ef9-94dc-230d19ef4fa6",
+                    "label": "three",
+                    "color": null
+                  }
+                ]
+              },
+              "date_created": "1558567802303",
+              "hide_from_guests": false
+            },
+            {
+              "id": "10916331-1903-4026-886f-891f29aa9fb6",
+              "name": "Checkbox Field",
+              "type": "checkbox",
+              "type_config": {},
+              "date_created": "1562944066529",
+              "hide_from_guests": false
+            },
+            {
+              "id": "2e3d4145-9a54-4d0a-9446-78ba595b327f",
+              "name": "Date Field",
+              "type": "date",
+              "type_config": {},
+              "date_created": "1565886951888",
+              "hide_from_guests": false
+            },
+            {
+              "id": "31b84286-635a-45fd-bbd5-3814fbbb08bb",
+              "name": "User Field",
+              "type": "users",
+              "type_config": {},
+              "date_created": "1565962775482",
+              "hide_from_guests": false
+            },
+            {
+              "id": "5cf8a44f-4421-4982-97d7-3e2209be2df4",
+              "name": "Currency Field",
+              "type": "currency",
+              "type_config": {
+                "default": null,
+                "precision": 2,
+                "currency_type": "USD"
+              },
+              "date_created": "1565993263347",
+              "hide_from_guests": false
+            },
+            {
+              "id": "790e5051-7923-43e8-8f05-2e4940557bd8",
+              "name": "Phone Field",
+              "type": "phone",
+              "type_config": {},
+              "date_created": "1563545189836",
+              "hide_from_guests": false
+            },
+            {
+              "id": "8551901a-3eca-4193-b691-e0e3c9f94ff3",
+              "name": "Drop Down Field",
+              "type": "drop_down",
+              "type_config": {
+                "default": 0,
+                "placeholder": null,
+                "options": [
+                  {
+                    "id": "5f6ce650-cb1d-437d-8373-72578a092510",
+                    "name": "1",
+                    "value": 1,
+                    "type": "numeric",
+                    "orderindex": 0,
+                    "color": null
+                  },
+                  {
+                    "id": "89707879-c4e1-44b9-9cc0-be7c16ee6681",
+                    "name": "2",
+                    "value": 2,
+                    "type": "numeric",
+                    "orderindex": 1,
+                    "color": null
+                  }
+                ]
+              },
+              "date_created": "1565993237778",
+              "hide_from_guests": false
+            },
+            {
+              "id": "9b45e079-f647-4556-bdd9-a7589ccd2530",
+              "name": "Manual Progress Field",
+              "type": "manual_progress",
+              "type_config": {
+                "end": 100,
+                "start": 0
+              },
+              "date_created": "1565993299379",
+              "hide_from_guests": false
+            },
+            {
+              "id": "b5be3c35-4fe1-429e-affe-4318de213efe",
+              "name": "Emoji (Rating) Field",
+              "type": "emoji",
+              "type_config": {
+                "count": 5,
+                "code_point": "1f383"
+              },
+              "date_created": "1565993309955",
+              "hide_from_guests": false
+            },
+            {
+              "id": "ba0d56f6-f1ba-4015-b726-12c013bb8ac6",
+              "name": "Automatic Progress Field",
+              "type": "automatic_progress",
+              "type_config": {
+                "tracking": {
+                  "subtasks": true,
+                  "checklists": true,
+                  "assigned_comments": true
+                },
+                "complete_on": 3
+              },
+              "date_created": "1566405066706",
+              "hide_from_guests": false
+            },
+            {
+              "id": "decb4a8a-6120-46b0-9cbb-66f3ee1de3c5",
+              "name": "Email Field",
+              "type": "email",
+              "type_config": {},
+              "date_created": "1565993242649",
+              "hide_from_guests": false
+            },
+            {
+              "id": "e438e267-4f9f-4b54-b937-cbdb0e0369dd",
+              "name": "URL Field",
+              "type": "url",
+              "type_config": {},
+              "date_created": "1559001282914",
+              "hide_from_guests": false
+            }
+          ]
+        }
+    SetCustomfieldValue:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+      description: |-
+        Body
+
+        {
+          "value": 80
+        }
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

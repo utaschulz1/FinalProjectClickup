@@ -1,0 +1,661 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Clickup API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Clickup API</h1>
+    <div class="app-desc">This Clickup API documentation created in Swagger is the final project for the Software Documentation course with Jordan Stanchev for the TCLoc master's program.
+Clickup is a projectmanagement tool.
+This API documentation introduces a get method to query all fields with their values from on specific task, a get method to query all custom fields that were created in a specific list without their values, and  a post method to change/set field values in a task by using field IDs.</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="info@umtranslation.com">info@umtranslation.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/UMTranslation/FinalProjectClickupAPI/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>APIKey KeyParamName:Authorization KeyInQuery:false KeyInHeader:true</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Admins">Admins</a></h4>
+  <ul>
+  <li><a href="#customFieldvalue"><code><span class="http-method">post</span> /task/{task_id}/field/{field_id}</code></a></li>
+  </ul>
+  <h4><a href="#Developers">Developers</a></h4>
+  <ul>
+  <li><a href="#getCustomfields"><code><span class="http-method">get</span> /list/{list_id}/field</code></a></li>
+  <li><a href="#getTask"><code><span class="http-method">get</span> /task/{task_id}</code></a></li>
+  </ul>
+
+  <h1><a name="Admins">Admins</a></h1>
+  <div class="method"><a name="customFieldvalue"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /task/{task_id}/field/{field_id}</code></pre></div>
+    <div class="method-summary">sets a custom field value (<span class="nickname">customFieldvalue</span>)</div>
+    <div class="method-notes">This methods changes or sets a value of a specific field of a task.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">task_id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Enter a task ID to identify the task where the custom field lives in </div>      <div class="param">field_id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Enter a field ID. You can retrieve the field ID on the task object from the get task route. </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#SetCustomfieldValue">SetCustomfieldValue</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The value to be set in the custom field </div>
+                </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">custom_task_ids (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; If you want to reference a task by it&#x27;s custom task id, this value must be true </div>      <div class="param">team_id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only used when the parameter is set to custom_task_ids&#x3D;true </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    task created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid input, object invalid
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    an existing task already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Developers">Developers</a></h1>
+  <div class="method"><a name="getCustomfields"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /list/{list_id}/field</code></pre></div>
+    <div class="method-summary">gets accessible custom fields in one list (<span class="nickname">getCustomfields</span>)</div>
+    <div class="method-notes">This method get all custom fields that were created in one specific list. This can be useful for retrieving IDs to set field values.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">list_id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; pass a list id to call one task </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#GetCustomfield">GetCustomfield</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id" : 0
+}, {
+  "id" : 0
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    queried task
+        
+    <h4 class="field-label">400</h4>
+    bad input parameter
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getTask"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /task/{task_id}</code></pre></div>
+    <div class="method-summary">calls complete task with all fields (<span class="nickname">getTask</span>)</div>
+    <div class="method-notes">This method gets all fields and their values of one specific task, including existing custom fields and attachements.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">task_id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; pass a task id to call one task </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">custom_task_ids (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; If you want to reference a task by its custom task id, this value must be true </div>      <div class="param">team_id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Only used when the parameter is set to custom_task_ids&#x3D;true </div>      <div class="param">include_subtasks (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Include subtasks, default false </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#getTask">getTask</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id" : 0
+}, {
+  "id" : 0
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    queried task
+        
+    <h4 class="field-label">400</h4>
+    bad input parameter
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#GetCustomfield"><code>GetCustomfield</code></a></li>
+    <li><a href="#SetCustomfieldValue"><code>SetCustomfieldValue</code></a></li>
+    <li><a href="#getTask"><code>getTask</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="GetCustomfield"><code>GetCustomfield</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>{
+&amp;quot;fields&amp;quot;: [
+{
+&amp;quot;id&amp;quot;: &amp;quot;03efda77-c7a0-42d3-8afd-fd546353c2f5&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Text Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1566400407303&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;0a52c486-5f05-403b-b4fd-c512ff05131c&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Number Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;number&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993269460&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;0c7e8f5c-557b-4128-bf37-29e2fe5bb7f9&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Label Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;labels&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;options&amp;quot;: [
+{
+&amp;quot;id&amp;quot;: &amp;quot;fb332c98-d7bc-4ee8-a3bd-b5ffaff98c3c&amp;quot;,
+&amp;quot;label&amp;quot;: &amp;quot;one&amp;quot;,
+&amp;quot;color&amp;quot;: null
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;2b0c058c-2f41-4f61-8fc8-f9ea426e8c0e&amp;quot;,
+&amp;quot;label&amp;quot;: &amp;quot;two&amp;quot;,
+&amp;quot;color&amp;quot;: null
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;75e10f4b-b4cc-4ef9-94dc-230d19ef4fa6&amp;quot;,
+&amp;quot;label&amp;quot;: &amp;quot;three&amp;quot;,
+&amp;quot;color&amp;quot;: null
+}
+]
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1558567802303&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;10916331-1903-4026-886f-891f29aa9fb6&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Checkbox Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;checkbox&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1562944066529&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;2e3d4145-9a54-4d0a-9446-78ba595b327f&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Date Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;date&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565886951888&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;31b84286-635a-45fd-bbd5-3814fbbb08bb&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;User Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;users&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565962775482&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;5cf8a44f-4421-4982-97d7-3e2209be2df4&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Currency Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;currency&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;default&amp;quot;: null,
+&amp;quot;precision&amp;quot;: 2,
+&amp;quot;currency_type&amp;quot;: &amp;quot;USD&amp;quot;
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993263347&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;790e5051-7923-43e8-8f05-2e4940557bd8&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Phone Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;phone&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1563545189836&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;8551901a-3eca-4193-b691-e0e3c9f94ff3&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Drop Down Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;drop_down&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;default&amp;quot;: 0,
+&amp;quot;placeholder&amp;quot;: null,
+&amp;quot;options&amp;quot;: [
+{
+&amp;quot;id&amp;quot;: &amp;quot;5f6ce650-cb1d-437d-8373-72578a092510&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;1&amp;quot;,
+&amp;quot;value&amp;quot;: 1,
+&amp;quot;type&amp;quot;: &amp;quot;numeric&amp;quot;,
+&amp;quot;orderindex&amp;quot;: 0,
+&amp;quot;color&amp;quot;: null
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;89707879-c4e1-44b9-9cc0-be7c16ee6681&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;2&amp;quot;,
+&amp;quot;value&amp;quot;: 2,
+&amp;quot;type&amp;quot;: &amp;quot;numeric&amp;quot;,
+&amp;quot;orderindex&amp;quot;: 1,
+&amp;quot;color&amp;quot;: null
+}
+]
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993237778&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;9b45e079-f647-4556-bdd9-a7589ccd2530&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Manual Progress Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;manual_progress&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;end&amp;quot;: 100,
+&amp;quot;start&amp;quot;: 0
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993299379&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;b5be3c35-4fe1-429e-affe-4318de213efe&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Emoji (Rating) Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;emoji&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;count&amp;quot;: 5,
+&amp;quot;code_point&amp;quot;: &amp;quot;1f383&amp;quot;
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993309955&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;ba0d56f6-f1ba-4015-b726-12c013bb8ac6&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Automatic Progress Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;automatic_progress&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;tracking&amp;quot;: {
+&amp;quot;subtasks&amp;quot;: true,
+&amp;quot;checklists&amp;quot;: true,
+&amp;quot;assigned_comments&amp;quot;: true
+},
+&amp;quot;complete_on&amp;quot;: 3
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1566405066706&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;decb4a8a-6120-46b0-9cbb-66f3ee1de3c5&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;Email Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;email&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1565993242649&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;e438e267-4f9f-4b54-b937-cbdb0e0369dd&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;URL Field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;url&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1559001282914&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false
+}
+]
+}</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SetCustomfieldValue"><code>SetCustomfieldValue</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>&lt;p&gt;Body&lt;/p&gt;
+&lt;p&gt;{
+&amp;quot;value&amp;quot;: 80
+}&lt;/p&gt;
+</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getTask"><code>getTask</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>body
+{
+&amp;quot;id&amp;quot;: &amp;quot;9hx&amp;quot;,
+&amp;quot;custom_id&amp;quot;:null,
+&amp;quot;name&amp;quot;: &amp;quot;Updated Task Name&amp;quot;,
+&amp;quot;text_content&amp;quot;: &amp;quot;New Task Description&amp;quot;,
+&amp;quot;description&amp;quot;: &amp;quot;New Task Description&amp;quot;,
+&amp;quot;status&amp;quot;: {
+&amp;quot;status&amp;quot;: &amp;quot;in progress&amp;quot;,
+&amp;quot;color&amp;quot;: &amp;quot;#d3d3d3&amp;quot;,
+&amp;quot;orderindex&amp;quot;: 1,
+&amp;quot;type&amp;quot;: &amp;quot;custom&amp;quot;
+},
+&amp;quot;orderindex&amp;quot;: &amp;quot;1.00000000000000000000000000000000&amp;quot;,
+&amp;quot;date_created&amp;quot;: &amp;quot;1567780450202&amp;quot;,
+&amp;quot;date_updated&amp;quot;: &amp;quot;1567780450202&amp;quot;,
+&amp;quot;date_closed&amp;quot;: null,
+&amp;quot;creator&amp;quot;: {
+&amp;quot;id&amp;quot;: 183,
+&amp;quot;username&amp;quot;: &amp;quot;John Doe&amp;quot;,
+&amp;quot;color&amp;quot;: &amp;quot;#827718&amp;quot;,
+&amp;quot;profilePicture&amp;quot;: &amp;quot;https://attachments-public.clickup.com/profilePictures/183_abc.jpg&amp;quot;
+},
+&amp;quot;assignees&amp;quot;: [],
+&amp;quot;checklists&amp;quot;: [],
+&amp;quot;tags&amp;quot;: [],
+&amp;quot;parent&amp;quot;: null,
+&amp;quot;priority&amp;quot;: null,
+&amp;quot;due_date&amp;quot;: null,
+&amp;quot;start_date&amp;quot;: null,
+&amp;quot;time_estimate&amp;quot;: null,
+&amp;quot;time_spent&amp;quot;: null,
+&amp;quot;custom_fields&amp;quot;: [
+{
+&amp;quot;id&amp;quot;: &amp;quot;0a52c486-5f05-403b-b4fd-c512ff05131c&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;My Number field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;checkbox&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1622176979540&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false,
+&amp;quot;value&amp;quot;: &amp;quot;23&amp;quot;,
+&amp;quot;required&amp;quot;: true
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;03efda77-c7a0-42d3-8afd-fd546353c2f5&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;My Text field&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;short_text&amp;quot;,
+&amp;quot;type_config&amp;quot;: {},
+&amp;quot;date_created&amp;quot;: &amp;quot;1622176979540&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false,
+&amp;quot;value&amp;quot;: &amp;quot;Text field input&amp;quot;,
+&amp;quot;required&amp;quot;: false
+},
+{
+&amp;quot;id&amp;quot;: &amp;quot;f4d2a20d-6759-4420-b853-222dbe2589d5&amp;quot;,
+&amp;quot;name&amp;quot;: &amp;quot;My People&amp;quot;,
+&amp;quot;type&amp;quot;: &amp;quot;users&amp;quot;,
+&amp;quot;type_config&amp;quot;: {
+&amp;quot;include_guests&amp;quot;: false,
+&amp;quot;include_team_members&amp;quot;: false
+},
+&amp;quot;date_created&amp;quot;: &amp;quot;1618440378816&amp;quot;,
+&amp;quot;hide_from_guests&amp;quot;: false,
+&amp;quot;required&amp;quot;: false
+}
+]
+&amp;quot;list&amp;quot;: {
+&amp;quot;id&amp;quot;: &amp;quot;123&amp;quot;
+},
+&amp;quot;folder&amp;quot;: {
+&amp;quot;id&amp;quot;: &amp;quot;456&amp;quot;
+},
+&amp;quot;space&amp;quot;: {
+&amp;quot;id&amp;quot;: &amp;quot;789&amp;quot;
+},
+&amp;quot;url&amp;quot;: &amp;quot;https://app.clickup.com/t/9hx&amp;quot;
+}</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
