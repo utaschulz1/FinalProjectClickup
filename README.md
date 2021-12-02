@@ -22,7 +22,7 @@ The form builder feature in Clickup creates a form, called a form view, that can
 * UI elements have the format of a codeblock: `UI element`
 * names can be formatted as _italic_
 * checkboxes are _enabled_, not checked, not activated
-* [reference topics](https://github.com/utaschulz1/FinalProjectClickup/wiki/Clickup-API---Get-form-data#api-supported-field-types-of-custom-fields) preferably have the format: list or table
+* [reference topics](https://github.com/utaschulz1/FinalProjectClickup/wiki/Clickup-API---Get-and-Post-field-data-from-tasks#api-supported-field-types-of-custom-fields) preferably have the format: list or table
 
 ## API documentation
 2 Get methods and 1 Post method will be described using Swagger UI. One Get method is to call a complete Clickup task, the other Get method calls all accessible custom fields in a list and the Post method can set custom fields in a Clickup task.
