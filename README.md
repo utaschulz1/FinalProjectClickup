@@ -29,4 +29,4 @@ The form builder feature in Clickup creates a form, called a form view, that can
 
 The [yaml file](https://github.com/utaschulz1/FinalProjectClickup/blob/main/FromSwagger-FinalProjectClickupAPI-1.0.0-resolved.yaml) and [html file](https://github.com/utaschulz1/FinalProjectClickup/blob/main/FromSwagger_ClickupAPI.html) of the documentation of thos 3 API endpoints are in this repo and on [Swagger](https://app.swaggerhub.com/apis/UMTranslation/FinalProjectClickupAPI/1.0.0)
 
-The documentation of the form builder feature and API live on the Wiki page of this project.
+The documentation of the [form builder feature](https://github.com/utaschulz1/FinalProjectClickup/wiki/2-Clickup--views#form-view) and [API](https://github.com/utaschulz1/FinalProjectClickup/wiki/Clickup-API---Get-and-Post-field-data-from-tasks) live on the Wiki page of this project.
